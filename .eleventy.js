@@ -1,5 +1,7 @@
+
 const yaml = require("js-yaml");
 const dayjs = require("dayjs")
+
 module.exports = function (eleventyConfig) {
     eleventyConfig.addLayoutAlias("default", "layouts/default.njk");
     eleventyConfig.addDataExtension('yaml', contents => yaml.load(contents))
@@ -7,6 +9,10 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addFilter('formatDate', function(date,format){
         return dayjs(date).format(format)
     });
+    eleventyConfig.addFilter('objtype', function(obj) {
+        return typeof obj;
+    })
+    
 
     return {
         dir: {
